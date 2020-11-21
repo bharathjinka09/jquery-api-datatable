@@ -1,0 +1,100 @@
+<!-- https://jsonplaceholder.typicode.com/posts?_start=0&_limit=100  -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>jQuery API Datatable | Posts</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <style type="text/css">
+        body{
+            background: aliceblue;
+        }
+    </style>
+
+
+</head>
+<body class="container mt-4">
+
+<div class="text-center">
+
+        <a href="index.html">
+        <button class="btn btn-primary">
+            
+        Users
+        </button>
+        </a>
+        <a href="posts.html">
+        <button class="btn btn-success">
+
+        Posts
+        </button>
+        </a>
+    </div>
+
+
+
+
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- data -->
+    </tbody>
+</table>
+<br>
+<br>
+
+<script type="text/javascript">
+$(document).ready( function () {
+
+    $.ajax({
+        url : 'https://jsonplaceholder.typicode.com/posts?_start=0&_limit=100',
+        type : 'GET',
+        dataType : 'json',
+        success : function(data) {
+            bindtoDatatable(data);
+        }
+    });
+
+
+
+});
+
+function bindtoDatatable(data) {
+        var table = $('#table_id').dataTable({
+            "bAutoWidth" : false,
+            "responsive": true,
+            "aaData" : data,
+            "columns" : [ 
+            {
+                "data" : "id"
+            }, 
+            {
+                "data" : "title"
+            },
+            {
+                "data" : "body"
+            },
+             
+        ]
+        })
+    }
+</script>
+
+</body>
+</html>
